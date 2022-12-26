@@ -2,10 +2,12 @@ import { type NextPage } from "next";
 import { useEffect, useState } from "react";
 import { trpc } from "../utils/trpc";
 import { calculateTransferDuty, roundToNearest } from "../utils/calculations";
+import CalculatedBlock from "../components/CalculatedBlock";
 
 const Home: NextPage = () => {
     const [calculatedRate, setCalculatedRate] = useState<number>();
     const [enteredState, setEnteredState] = useState<string>("WA");
+    const [enteredDeposit, setEnteredDeposit] = useState<number>(0);
     const [enteredPropertyPrice, setEnteredPropertyPrice] = useState<number>(0);
     const utils = trpc.useContext();
 
@@ -85,13 +87,35 @@ const Home: NextPage = () => {
                         </select>
                     </div>
                 </div>
+                <div className="flex items-center gap-2">
+                    <label className="text-lg">Deposit Amount:</label>
+                    <input
+                        className="border border-solid p-2"
+                        type="number"
+                        onChange={(e) =>
+                            setEnteredDeposit(e.currentTarget.valueAsNumber)
+                        }
+                    />
+                </div>
                 <button
                     onClick={() => handleCalculation()}
                     className="rounded border border-solid p-2"
                 >
                     Calculate
                 </button>
-                <p>Stamp Duty: {roundToNearest(calculatedRate)}</p>
+                {calculatedRate ? (
+                    <>
+                        <CalculatedBlock
+                            transferDutyResult={roundToNearest(calculatedRate)}
+                            initialExpectedLoan={
+                                enteredPropertyPrice - enteredDeposit
+                            }
+                            depositPercent={
+                                (enteredDeposit / enteredPropertyPrice) * 100
+                            }
+                        />
+                    </>
+                ) : null}
             </div>
         </div>
     );

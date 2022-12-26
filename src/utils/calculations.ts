@@ -39,8 +39,6 @@ export const calculateTransferDuty = (
     }
 };
 
-export const roundToNearest = (inputValue?: number) => {
-    if (!inputValue) return;
-
+export const roundToNearest = (inputValue: number) => {
     return Math.round(inputValue);
 };
