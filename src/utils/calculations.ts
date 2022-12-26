@@ -21,6 +21,19 @@ const calculateDutiablePercent = (
     return (propertyPrice - rangeLow) * rateAsPercent + base;
 };
 
+export const calculateRealLoanValue = (
+    initialLoanAmount: number,
+    transferDuty: number,
+    lmiPremium: number
+) => {
+    return initialLoanAmount + transferDuty + lmiPremium;
+};
+
+export const calculateLMIPremium = (loanAmount: number, rate: number) => {
+    const rateAsPercent = rate / 100;
+    return loanAmount * rateAsPercent;
+};
+
 export const calculateTransferDuty = (
     rate: number,
     base: number,

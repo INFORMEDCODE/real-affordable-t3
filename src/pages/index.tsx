@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { trpc } from "../utils/trpc";
 import { calculateTransferDuty, roundToNearest } from "../utils/calculations";
 import CalculatedBlock from "../components/CalculatedBlock";
+import TextField from "../components/TextField";
+import ObjectiveCalculatedBlock from "../components/ObjectiveCalculatedBlock";
 
 const Home: NextPage = () => {
     const [calculatedRate, setCalculatedRate] = useState<number>();
@@ -55,14 +57,16 @@ const Home: NextPage = () => {
                 <div className="flex items-center gap-2">
                     <div className="flex items-center gap-2">
                         <label className="text-lg">Property Price:</label>
-                        <input
+                        <TextField
+                            className="flex items-center border border-solid p-2"
                             type="number"
-                            className="rounded border border-solid p-2"
                             onChange={(e) =>
                                 setEnteredPropertyPrice(
                                     e.currentTarget.valueAsNumber
                                 )
                             }
+                            adornment="$"
+                            adornmentPosition="start"
                         />
                     </div>
                     <div className="flex items-center gap-2">
@@ -89,12 +93,14 @@ const Home: NextPage = () => {
                 </div>
                 <div className="flex items-center gap-2">
                     <label className="text-lg">Deposit Amount:</label>
-                    <input
-                        className="border border-solid p-2"
+                    <TextField
+                        className="flex items-center border border-solid p-2"
                         type="number"
                         onChange={(e) =>
                             setEnteredDeposit(e.currentTarget.valueAsNumber)
                         }
+                        adornment="$"
+                        adornmentPosition="start"
                     />
                 </div>
                 <button
@@ -113,6 +119,7 @@ const Home: NextPage = () => {
                             depositPercent={
                                 (enteredDeposit / enteredPropertyPrice) * 100
                             }
+                            propertyPrice={enteredPropertyPrice}
                         />
                     </>
                 ) : null}
