@@ -1,0 +1,467 @@
+[
+    {
+        "lvrLow": 80.01,
+        "lvrHigh": 81,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 0.475
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 0.568
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 0.904
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 0.904
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 0.913
+            }
+        ]
+    },
+    {
+        "lvrLow": 81.01,
+        "lvrHigh": 82,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 0.485
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 0.568
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 0.904
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 0.904
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 0.913
+            }
+        ]
+    },
+    {
+        "lvrLow": 82.01,
+        "lvrHigh": 83,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 0.596
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 0.699
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 0.932
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 1.09
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 1.109
+            }
+        ]
+    },
+    {
+        "lvrLow": 83.01,
+        "lvrHigh": 84,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 0.662
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 0.829
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 0.96
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 1.09
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 1.146
+            }
+        ]
+    },
+    {
+        "lvrLow": 84.01,
+        "lvrHigh": 85,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 0.727
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 0.969
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 1.165
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 1.333
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 1.407
+            }
+        ]
+    },
+    {
+        "lvrLow": 85.01,
+        "lvrHigh": 86,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 0.876
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 1.081
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 1.258
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 1.407
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 1.463
+            }
+        ]
+    },
+    {
+        "lvrLow": 86.01,
+        "lvrHigh": 87,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 0.932
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 1.146
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 1.407
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 1.631
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 1.733
+            }
+        ]
+    },
+    {
+        "lvrLow": 87.01,
+        "lvrHigh": 88,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 1.062
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 1.305
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 1.463
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 1.631
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 1.752
+            }
+        ]
+    },
+    {
+        "lvrLow": 88.01,
+        "lvrHigh": 89,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 1.295
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 1.621
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 1.948
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 2.218
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 2.395
+            }
+        ]
+    },
+    {
+        "lvrLow": 89.01,
+        "lvrHigh": 90,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 1.463
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 1.873
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 2.18
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 2.367
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 2.516
+            }
+        ]
+    },
+    {
+        "lvrLow": 90.01,
+        "lvrHigh": 91,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 2.013
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 2.618
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 3.513
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 3.783
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 3.82
+            }
+        ]
+    },
+    {
+        "lvrLow": 91.01,
+        "lvrHigh": 92,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 2.013
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 2.674
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 3.569
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 3.867
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 3.932
+            }
+        ]
+    },
+    {
+        "lvrLow": 92.01,
+        "lvrHigh": 93,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 2.33
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 3.028
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 3.802
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 4.081
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 4.156
+            }
+        ]
+    },
+    {
+        "lvrLow": 93.01,
+        "lvrHigh": 94,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 2.376
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 3.028
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 3.802
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 4.286
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 4.324
+            }
+        ]
+    },
+    {
+        "lvrLow": 94.01,
+        "lvrHigh": 95,
+        "loanAmounts": [
+            {
+                "loanAmountLow": 0,
+                "loanAmountHigh": 300000,
+                "rate": 2.609
+            },
+            {
+                "loanAmountLow": 300001,
+                "loanAmountHigh": 500000,
+                "rate": 3.345
+            },
+            {
+                "loanAmountLow": 500001,
+                "loanAmountHigh": 600000,
+                "rate": 3.998
+            },
+            {
+                "loanAmountLow": 600001,
+                "loanAmountHigh": 750000,
+                "rate": 4.613
+            },
+            {
+                "loanAmountLow": 750001,
+                "loanAmountHigh": 1000000,
+                "rate": 4.603
+            }
+        ]
+    }
+]

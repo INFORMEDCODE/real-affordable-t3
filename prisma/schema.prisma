@@ -30,6 +30,28 @@ model TransferDuty {
   stateId   String?
 }
 
+model LmiPremium {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  lvrLow      Float
+  lvrHigh     Float
+  loanAmounts LmiLoanAmounts[]
+}
+
+model LmiLoanAmounts {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  loanAmountLow  Int
+  loanAmountHigh Int
+  rate           Float
+  lmiPremium     LmiPremium? @relation(fields: [lmiPremiumId], references: [id])
+  lmiPremiumId   String?
+}
+
 model State {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())

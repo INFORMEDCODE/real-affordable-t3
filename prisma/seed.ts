@@ -1,9 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import lmiPremiumData from "./lmiPremiumData.json";
 import transferDutyData from "./transferDutyData.json";
 
 const prisma = new PrismaClient();
 
-async function main() {
+const seedStateAndTransferDuties = async () => {
     Object.entries(transferDutyData).map(async (transferDuty) => {
         const stateCreate = await prisma.state.create({
             data: {
@@ -28,6 +29,33 @@ async function main() {
             });
         });
     });
+};
+
+const seedLMIAndLoanAmounts = async () => {
+    lmiPremiumData.map(async (lmiPremiumSingle) => {
+        const lmiPremiumCreate = await prisma.lmiPremium.create({
+            data: {
+                lvrLow: lmiPremiumSingle.lvrLow,
+                lvrHigh: lmiPremiumSingle.lvrHigh,
+            },
+        });
+
+        lmiPremiumSingle.loanAmounts.forEach(async (loanAmountData) => {
+            await prisma.lmiLoanAmounts.create({
+                data: {
+                    lmiPremiumId: lmiPremiumCreate.id,
+                    loanAmountLow: loanAmountData.loanAmountLow,
+                    loanAmountHigh: loanAmountData.loanAmountHigh,
+                    rate: loanAmountData.rate,
+                },
+            });
+        });
+    });
+};
+
+async function main() {
+    await seedStateAndTransferDuties();
+    await seedLMIAndLoanAmounts();
 }
 
 main()

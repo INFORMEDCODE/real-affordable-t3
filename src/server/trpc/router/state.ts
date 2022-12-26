@@ -2,18 +2,6 @@ import { z } from "zod";
 import { router, publicProcedure } from "../trpc";
 
 export const stateRouter = router({
-    getTransferDuty: publicProcedure
-        .input(z.object({ state: z.string(), propertyPrice: z.number() }))
-        .query(({ input, ctx }) => {
-            return ctx.prisma.state.findUnique({
-                where: {
-                    state: input.state,
-                },
-                include: {
-                    transferDuties: true,
-                },
-            });
-        }),
     searchAppliedRate: publicProcedure
         .input(z.object({ state: z.string(), propertyPrice: z.number() }))
         .query(async ({ input, ctx }) => {
