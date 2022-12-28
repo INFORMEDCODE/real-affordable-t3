@@ -24,6 +24,8 @@ const CalculatedBlock: React.FC<CalculatedBlock> = ({
     propertyPrice,
 }) => {
     const [calculatedLMIPremium, setCalculatedLMIPremium] = useState<number>();
+    const [includeTransferDuty, setIncludeTransferDuty] =
+        useState<boolean>(true);
     const { data, isLoading } = trpc.lmiPremium.searchLmiPremium.useQuery({
         loanAmount: initialExpectedLoan,
         loanValueRatio: 100 - depositPercent,
@@ -42,6 +44,7 @@ const CalculatedBlock: React.FC<CalculatedBlock> = ({
     }, [data]);
 
     console.log("calculation", data);
+    console.log("checkboxValue", includeTransferDuty);
 
     return (
         <>
@@ -58,6 +61,18 @@ const CalculatedBlock: React.FC<CalculatedBlock> = ({
                         adornment="$"
                         adornmentPosition="start"
                     />
+                    <input
+                        type="checkbox"
+                        checked={includeTransferDuty}
+                        value={includeTransferDuty as unknown as string}
+                        className="h-4 w-4"
+                        onChange={() =>
+                            setIncludeTransferDuty(!includeTransferDuty)
+                        }
+                    />
+                    <label className="text-sm italic">
+                        Pay Transfer Duty as Upfront?
+                    </label>
                 </div>
                 <div className="flex items-center gap-2">
                     <label className="font-bold">
@@ -115,7 +130,9 @@ const CalculatedBlock: React.FC<CalculatedBlock> = ({
                 ) : null}
             </div>
             <ObjectiveCalculatedBlock
-                transferDutyResult={transferDutyResult}
+                transferDutyResult={
+                    !includeTransferDuty ? transferDutyResult : 0
+                }
                 initialLoanValue={initialExpectedLoan}
                 lmiPremiumResult={calculatedLMIPremium}
                 propertyPrice={propertyPrice}

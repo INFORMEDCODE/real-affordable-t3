@@ -23,10 +23,10 @@ const calculateDutiablePercent = (
 
 export const calculateRealLoanValue = (
     initialLoanAmount: number,
-    transferDuty: number,
-    lmiPremium: number
+    lmiPremium: number,
+    transferDuty?: number
 ) => {
-    return initialLoanAmount + transferDuty + lmiPremium;
+    return initialLoanAmount + (transferDuty ? transferDuty : 0) + lmiPremium;
 };
 
 export const calculateLMIPremium = (loanAmount: number, rate: number) => {
