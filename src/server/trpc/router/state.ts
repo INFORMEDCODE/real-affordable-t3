@@ -27,4 +27,16 @@ export const stateRouter = router({
                 );
             });
         }),
+    getState: publicProcedure
+        .input(z.object({ state: z.string() }))
+        .query(async ({ input, ctx }) => {
+            return await ctx.prisma.state.findUnique({
+                where: {
+                    state: input.state.toLowerCase(),
+                },
+                include: {
+                    transferDuties: true,
+                },
+            });
+        }),
 });

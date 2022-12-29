@@ -1,52 +1,13 @@
 import { type NextPage } from "next";
-import { useEffect, useState } from "react";
-import { trpc } from "../utils/trpc";
-import { calculateTransferDuty, roundToNearest } from "../utils/calculations";
+import { useState } from "react";
 import CalculatedBlock from "../components/CalculatedBlock";
-import TextField from "../components/TextField";
-import ObjectiveCalculatedBlock from "../components/ObjectiveCalculatedBlock";
+import TextField from "../components/shared/TextField";
 
 const Home: NextPage = () => {
-    const [calculatedRate, setCalculatedRate] = useState<number>();
     const [enteredState, setEnteredState] = useState<string>("WA");
     const [enteredDeposit, setEnteredDeposit] = useState<number>(0);
     const [enteredPropertyPrice, setEnteredPropertyPrice] = useState<number>(0);
-    const utils = trpc.useContext();
-
-    const { data, refetch } = trpc.state.searchAppliedRate.useQuery(
-        {
-            state: enteredState,
-            propertyPrice: enteredPropertyPrice,
-        },
-        { enabled: false, refetchOnWindowFocus: false }
-    );
-
-    useEffect(() => {
-        if (!data) {
-            console.log("no data yet");
-            return;
-        }
-
-        if (!enteredPropertyPrice) {
-            console.log("no prop price entered");
-            return;
-        }
-
-        setCalculatedRate(
-            calculateTransferDuty(
-                data.rate,
-                data.base,
-                data.rateType,
-                data.rangeLow,
-                enteredPropertyPrice
-            )
-        );
-    }, [data, enteredPropertyPrice]);
-
-    const handleCalculation = () => {
-        utils.state.searchAppliedRate.invalidate();
-        refetch();
-    };
+    const [showCalculated, setShowCalculated] = useState<boolean>(false);
 
     return (
         <div className="align-center mx-auto flex w-full flex-col justify-center text-center">
@@ -104,22 +65,17 @@ const Home: NextPage = () => {
                     />
                 </div>
                 <button
-                    onClick={() => handleCalculation()}
                     className="rounded border border-solid p-2"
+                    onClick={() => setShowCalculated(true)}
                 >
                     Calculate
                 </button>
-                {calculatedRate ? (
+                {showCalculated ? (
                     <>
                         <CalculatedBlock
-                            transferDutyResult={roundToNearest(calculatedRate)}
-                            initialExpectedLoan={
-                                enteredPropertyPrice - enteredDeposit
-                            }
-                            depositPercent={
-                                (enteredDeposit / enteredPropertyPrice) * 100
-                            }
+                            deposit={enteredDeposit}
                             propertyPrice={enteredPropertyPrice}
+                            state={enteredState}
                         />
                     </>
                 ) : null}

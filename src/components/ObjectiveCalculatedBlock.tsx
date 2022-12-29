@@ -1,4 +1,4 @@
-import TextField from "./TextField";
+import TextField from "./shared/TextField";
 import { calculateRealLoanValue } from "../utils/calculations";
 import { useState, useEffect } from "react";
 
