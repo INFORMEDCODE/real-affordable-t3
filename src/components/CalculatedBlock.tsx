@@ -1,7 +1,12 @@
-import TextField from "./TextField";
+import TextField from "./shared/TextField";
+import Accordian from "./shared/Accordian";
+import TransferDutyDisplay from "./TransferDutyTable";
 import { trpc } from "../utils/trpc";
 import { useEffect, useState } from "react";
-import { calculateLMIPremium } from "../utils/calculations";
+import {
+    calculateLMIPremium,
+    calculateTransferDuty,
+} from "../utils/calculations";
 import ObjectiveCalculatedBlock from "./ObjectiveCalculatedBlock";
 /**
  * a block that can be contained within an accordian style pane
@@ -11,43 +16,68 @@ import ObjectiveCalculatedBlock from "./ObjectiveCalculatedBlock";
  * - deposit percentage
  */
 type CalculatedBlock = {
-    transferDutyResult: number;
-    initialExpectedLoan: number;
-    depositPercent: number;
+    deposit: number;
     propertyPrice: number;
+    state: string;
 };
 
 const CalculatedBlock: React.FC<CalculatedBlock> = ({
-    transferDutyResult,
-    initialExpectedLoan,
-    depositPercent,
+    deposit,
     propertyPrice,
+    state,
 }) => {
     const [calculatedLMIPremium, setCalculatedLMIPremium] = useState<number>();
+    const [calculatedTransferRate, setCalculatedTransferRate] =
+        useState<number>();
     const [includeTransferDuty, setIncludeTransferDuty] =
         useState<boolean>(true);
-    const { data, isLoading } = trpc.lmiPremium.searchLmiPremium.useQuery({
-        loanAmount: initialExpectedLoan,
-        loanValueRatio: 100 - depositPercent,
+    const { data: lmiPremiumData } = trpc.lmiPremium.searchLmiPremium.useQuery({
+        loanAmount: propertyPrice - deposit,
+        loanValueRatio: 100 - (deposit / propertyPrice) * 100,
+    });
+
+    const { data: transferData } = trpc.state.searchAppliedRate.useQuery({
+        state,
+        propertyPrice,
+    });
+    const { data: allTransfers } = trpc.state.getState.useQuery({
+        state,
     });
 
     useEffect(() => {
         // reset the LMI premium
-        if (!data) {
+        if (!lmiPremiumData) {
             setCalculatedLMIPremium(0);
             return;
         }
 
         setCalculatedLMIPremium(
-            calculateLMIPremium(initialExpectedLoan, data.rate)
+            calculateLMIPremium(propertyPrice - deposit, lmiPremiumData.rate)
         );
-    }, [data]);
 
-    console.log("calculation", data);
+        if (transferData) {
+            setCalculatedTransferRate(
+                calculateTransferDuty(
+                    transferData.rate,
+                    transferData.base,
+                    transferData.rateType,
+                    transferData.rangeLow,
+                    propertyPrice
+                )
+            );
+        }
+    }, [lmiPremiumData]);
+
+    console.log("calculation", lmiPremiumData);
     console.log("checkboxValue", includeTransferDuty);
 
     return (
         <>
+            {allTransfers ? (
+                <Accordian title="Transfer Duty Details for State">
+                    <TransferDutyDisplay stateData={allTransfers} />
+                </Accordian>
+            ) : null}
             <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
                     <label className="font-bold">
@@ -57,7 +87,7 @@ const CalculatedBlock: React.FC<CalculatedBlock> = ({
                         type="text"
                         disabled
                         className="flex items-center border border-solid p-2"
-                        value={transferDutyResult}
+                        value={calculatedTransferRate}
                         adornment="$"
                         adornmentPosition="start"
                     />
@@ -82,7 +112,7 @@ const CalculatedBlock: React.FC<CalculatedBlock> = ({
                         type="text"
                         disabled
                         className="flex items-center border border-solid p-2"
-                        value={initialExpectedLoan}
+                        value={propertyPrice - deposit}
                         adornment="$"
                         adornmentPosition="start"
                     />
@@ -92,7 +122,7 @@ const CalculatedBlock: React.FC<CalculatedBlock> = ({
                         <label className="font-bold">Deposit Percentage:</label>
                         <TextField
                             type="text"
-                            value={depositPercent}
+                            value={(deposit / propertyPrice) * 100}
                             disabled
                             adornment="%"
                             adornmentPosition="end"
@@ -103,7 +133,7 @@ const CalculatedBlock: React.FC<CalculatedBlock> = ({
                         <label className="font-bold">Remaining Percent:</label>
                         <TextField
                             type="text"
-                            value={100 - depositPercent}
+                            value={100 - (deposit / propertyPrice) * 100}
                             disabled
                             adornment="%"
                             adornmentPosition="end"
@@ -111,7 +141,7 @@ const CalculatedBlock: React.FC<CalculatedBlock> = ({
                         />
                     </div>
                 </div>
-                {100 - depositPercent > 80 ? (
+                {100 - (deposit / propertyPrice) * 100 > 80 ? (
                     <div className="flex gap-2">
                         <div className="flex items-center gap-2">
                             <label className="font-bold">
@@ -131,9 +161,13 @@ const CalculatedBlock: React.FC<CalculatedBlock> = ({
             </div>
             <ObjectiveCalculatedBlock
                 transferDutyResult={
-                    !includeTransferDuty ? transferDutyResult : 0
+                    !includeTransferDuty
+                        ? calculatedTransferRate
+                            ? calculatedTransferRate
+                            : 0
+                        : 0
                 }
-                initialLoanValue={initialExpectedLoan}
+                initialLoanValue={propertyPrice - deposit}
                 lmiPremiumResult={calculatedLMIPremium}
                 propertyPrice={propertyPrice}
             />
