@@ -26,8 +26,9 @@ model TransferDuty {
   rate      Float
   rateType  String
   base      Int
-  state     State?  @relation(fields: [stateId], references: [id])
-  stateId   String?
+  equation  String?
+  state     State   @relation(fields: [stateId], references: [id])
+  stateId   String
 }
 
 model LmiPremium {
@@ -48,8 +49,8 @@ model LmiLoanAmounts {
   loanAmountLow  Int
   loanAmountHigh Int
   rate           Float
-  lmiPremium     LmiPremium? @relation(fields: [lmiPremiumId], references: [id])
-  lmiPremiumId   String?
+  lmiPremium     LmiPremium @relation(fields: [lmiPremiumId], references: [id])
+  lmiPremiumId   String
 }
 
 model State {

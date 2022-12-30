@@ -62,14 +62,14 @@ const CalculatedBlock: React.FC<CalculatedBlock> = ({
                     transferData.base,
                     transferData.rateType,
                     transferData.rangeLow,
-                    propertyPrice
+                    propertyPrice,
+                    transferData.equation == null
+                        ? undefined
+                        : transferData.equation
                 )
             );
         }
-    }, [lmiPremiumData]);
-
-    console.log("calculation", lmiPremiumData);
-    console.log("checkboxValue", includeTransferDuty);
+    }, [lmiPremiumData, transferData, state]);
 
     return (
         <>

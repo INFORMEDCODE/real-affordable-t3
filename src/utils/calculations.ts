@@ -21,6 +21,20 @@ const calculateDutiablePercent = (
     return (propertyPrice - rangeLow) * rateAsPercent + base;
 };
 
+const calculateFullPercent = (rate: number, propertyPrice: number) => {
+    const rateAsPercent = rate / 100;
+    return propertyPrice * rateAsPercent;
+};
+
+const calculateCustomRate = (propertyPrice: number, equation: string) => {
+    return Function(
+        `'use strict'; return (${equation.replaceAll(
+            "PROP_PRICE",
+            propertyPrice.toString()
+        )})`
+    )();
+};
+
 export const calculateRealLoanValue = (
     initialLoanAmount: number,
     lmiPremium: number,
@@ -39,7 +53,8 @@ export const calculateTransferDuty = (
     base: number,
     rateType: string,
     rangeLow: number,
-    propertyPrice: number
+    propertyPrice: number,
+    equation?: string
 ) => {
     if (rateType == "partThereof") {
         return calculatePartThereof(rate, base, rangeLow, propertyPrice);
@@ -49,6 +64,12 @@ export const calculateTransferDuty = (
     }
     if (rateType == "full") {
         return calculateFull(rate, propertyPrice);
+    }
+    if (rateType == "fullPercent") {
+        return calculateFullPercent(rate, propertyPrice);
+    }
+    if (rateType == "custom" && equation) {
+        return calculateCustomRate(propertyPrice, equation);
     }
 };
 
